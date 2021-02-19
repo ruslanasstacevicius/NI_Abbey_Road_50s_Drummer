@@ -1762,21 +1762,15 @@ on pgs_changed
 end on
 
 on persistence_changed
-	if ($init_LOADED = 1)
-		{init callback has been executed, i.e. Master NKI instrument has been loaded from scratch}
+
 		@snap_file_name := @file_name
 		@snap_file_path := @file_path
-	else
-		{init callback has NOT been executed, i.e. snapshot has been loaded}
 
-		@file_name := @snap_file_name
-		@file_path := @snap_file_path
+		set_text($groove_display, @file_name)
 
 		call load_file
 		call init_event_array
 
-		set_text($groove_display, @file_name)
-		
 		pgs_set_key_val(ACTION_TYPE, 0, -1)
 		pgs_set_key_val(GROOVE_DATA, 0, -1)
 		pgs_set_key_val(GROOVE_DATA, 1, 0)
@@ -1855,6 +1849,5 @@ on persistence_changed
 		{re-initiate playback if playback was on when the function was invoked}
 		$play := $snap_play
 		$processing_flag := 0
-	end if
 	$init_LOADED := 0
 end on
