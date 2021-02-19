@@ -497,12 +497,12 @@ on init
 	read_persistent_var($double)
 	$quant_resol := %quant_resol_transform[$grid]
 	$swing_cycle := %swing_cycle_transform[$grid]	
-	$quantize := 0
+	{$quantize := 0
 	$swing := 0
 	$velocity := 0
 	$half := 0
 	$normal := 1
-	$double := 0
+	$double := 0}
 	$swing_amount := $swing
 	$quant_amount := $quantize
 	if ($velocity < 0)
